@@ -83,7 +83,7 @@ pub fn extra_config() -> Arg<'static> {
         and consumer via: ./kafcat -X key1=val1 -X key2=val2 --cp <from> -- <to>",
         )
         .takes_value(true)
-        .multiple(true)
+        .multiple_values(true)
 }
 
 pub fn partition() -> Arg<'static> {
@@ -174,8 +174,8 @@ pub fn copy_subcommand() -> App<'static> {
     App::new("copy")
         .setting(AppSettings::AllowLeadingHyphen)
         .alias("--cp")
-        .arg(Arg::new("from").multiple(true).required(true))
-        .arg(Arg::new("to").multiple(true).last(true).required(true))
+        .arg(Arg::new("from").multiple_values(true).required(true))
+        .arg(Arg::new("to").multiple_values(true).last(true).required(true))
         .about(
             "Copy mode accepts two parts of arguments <from> and <to>, the two parts are \
         separated by [--]. <from> is the exact as Consumer mode, and <to> is the exact as Producer \
